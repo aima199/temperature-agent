@@ -1,6 +1,12 @@
+
 model = {
     "Room1": None,
     "Room2": None
+}
+
+heater_count = {
+    "Room1": 0,
+    "Room2": 0
 }
 
 
@@ -8,6 +14,7 @@ def temperature_agent(room, reading):
     model[room] = reading
 
     if reading == "Cold":
+        heater_count[room] += 1
         return "Turn Heater ON"
     elif reading == "Hot":
         return "Turn Heater OFF"
@@ -24,8 +31,10 @@ percept_sequence = [
     ("Room2", "Normal")
 ]
 
-print(f"{'Room':<10} {'Reading':<10} {'Action':<35} {'Internal Model'}")
+print("Room\tReading\tAction\t\t\tInternal Model")
 
 for room, reading in percept_sequence:
     action = temperature_agent(room, reading)
-    print(f"{room:<10} {reading:<10} {action:<35} {model}")
+    print(room, "\t", reading, "\t", action, "\t", model)
+
+print("Heater ON count:", heater_count)
