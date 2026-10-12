@@ -38,3 +38,5 @@ for room, reading in percept_sequence:
     print(room, "\t", reading, "\t", action, "\t", model)
 
 print("Heater ON count:", heater_count)
+
+print("Temperature agent test completed.")
